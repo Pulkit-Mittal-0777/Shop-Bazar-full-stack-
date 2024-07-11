@@ -1,0 +1,85 @@
+<% layout('layouts/boilerplate') -%>;
+
+<%- include('../partials/flash')  %> 
+
+
+<div style="display:flex ;justify-content:space-between;">
+
+    
+    <div class="card shadow-lg mx-auto text-center" style="width: 28rem; height: 500px;">
+        <img src="<%= product.img %>" class="card-img-top" alt="item image" style= "height:300px">
+        <div class="card-body">
+          <h5 class="card-title"><%= product.name %></h5>
+          <h5 class="card-title">$<%= product.price %></h5>
+          <p class="card-text"><%= product.des %></p>
+          <a href="#" class="btn btn-success">Buy</a>
+          <form action="/user/<%=product._id%>/add" method="post">
+            <button class="btn btn-secondary">Add To Cart</button>
+          </form>
+          <a href="/products/<%=product._id%>/edit" class="btn btn-primary">Edit</a>
+          <form class="d-inline-block" action="/products/<%=product._id%>?_method=DELETE" method="post">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+    </div>
+    <div style="width:600px;">
+        <h3>Leave your comment</h3>
+        <form action="/products/<%=product._id%>/review" class="needs-validation" method="post" novalidate>
+          <div >
+            <label class="form-label" for="ratings">Rating</label>
+            <fieldset class="starability-basic">
+            
+              <input type="radio" id="no-rate" class="input-no-rate" name="ratings" value="0" checked aria-label="No rating." />
+              <input type="radio" id="first-rate1" name="ratings" value="1" />
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input type="radio" id="first-rate2" name="ratings" value="2" />
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input type="radio" id="first-rate3" name="ratings" value="3" />
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input type="radio" id="first-rate4" name="ratings" value="4" />
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <input type="radio" id="first-rate5" name="ratings" value="5" />
+              <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+            
+          </div>
+
+          
+
+
+
+          <div class="mb-3">
+            <label class="form-label" for="comments">Description</label>
+            <textarea class="form-control" name="comments" id="desc"  rows="5"></textarea>
+          </div>
+          <button class="btn btn-success btn-sm">submit</button>
+        </form>
+        <div class="my-3">
+
+          <% for(let review of product.reviews){%>
+            <div class="card">
+              <div class="card-header">
+                Review
+              </div>
+              <div class="card-body">
+                <p class="starability-result" data-rating="<%=review.ratings%>">
+                  Rated: <%=review.ratings%> stars
+                </p>
+                <p class="card-text"><%=review.comments%></p>
+                <%if(review.createdAt){%>
+                  <p class="text-muted"><%=review.createdAt.toDateString()%></p>  
+                  <!-- .toDateString() is a method to convert the time format to date
+                  and the text-muted is a class of bootstrap isse jo time show hoga uska text halka ho jayega -->
+                <%}%>
+
+                <form  action="/products/<%=product._id %>/<%=review._id%>?_method=DELETE" method="post">
+                  <button class="btn btn-danger btn-sm">Delete</button>  
+                </form>
+                
+
+              </div>
+            </div>
+          <%}%>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<% layout('layouts/boilerplate') -%>;
+<form action="/products/<%=product._id%>?_method=PATCH" class="needs-validation" method="post" novalidate >
+    <div class="mb-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input type="text" name="name" id="name" class="form-control" value="<%=product.name%>" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="img" class="form-label">Image Url</label>
+        <input type="text" name="img" id="img" class="form-control" value="<%=product.img%>" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">price</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text">$</span>
+            <input type="number" class="form-control" name="price" aria-label="Amount (to the nearest dollar)" value="<%=product.price%>" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <span class="input-group-text">.00</span>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="des" class="form-label">Description</label>
+        <div class="input-group">
+            <span class="input-group-text">With textarea</span>
+            <textarea  class="form-control" aria-label="With textarea" name="des"  required> <%=product.des%> </textarea>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Edit</button>
+</form>

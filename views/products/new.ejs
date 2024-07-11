@@ -1,0 +1,43 @@
+<% layout('layouts/boilerplate') -%>;
+<form action="/products" class="needs-validation" method="post"  novalidate>
+    <!-- ye jo class add ki h needs-validation ye bootstap ki wajah se ki h bcoz of client side validation in adding new product
+     or jo novalidate h vo kya krta h ki jb hum input filled required kr rhe h to browser by default apni taraf se error 
+    dikhata h jb hum bina input diye add krte h 
+    pr hme custum error chahiye bootstrap ki aur browser ki rokni h to isliye novalidte ka use krte h -->
+    <div class="mb-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Product Name" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="img" class="form-label">Image Url</label>
+        
+        <input type="text" name="img" id="img" class="form-control" placeholder="Enter Image Url" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">price</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text">$</span>
+            <input type="number" class="form-control" name="price" aria-label="Amount (to the nearest dollar)" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <span class="input-group-text">.00</span>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="desc" class="form-label">Description</label>
+        <div class="input-group">
+            <span class="input-group-text">With textarea</span>
+            <textarea  class="form-control" aria-label="With textarea" name="desc"></textarea>
+            
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
+
